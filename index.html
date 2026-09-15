@@ -3,12 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loading Application...</title>
-    <!-- This loads and executes your index.js file -->
-    <script src="index.js" defer></script>
+    <title>Unblocked Game</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #111;
+            color: #fff;
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        #game-container {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 </head>
 <body>
-    <h1>My Application</h1>
-    <p>The JavaScript file is executing in the background.</p>
+
+    <!-- This container is used if your index.js dynamically builds the game canvas or UI -->
+    <div id="game-container"></div>
+
+    <script>
+        // Check if index.js is meant to run here, otherwise redirect
+        // This loads the script dynamically into the current page view
+        const script = document.createElement('script');
+        script.src = 'index.js';
+        
+        script.onerror = function() {
+            // Fallback: If index.js fails to load or isn't a display script, redirect to it
+            window.location.href = 'index.js';
+        };
+
+        document.body.appendChild(script);
+    </script>
 </body>
 </html>
